@@ -60,10 +60,10 @@ Gizmo is what provides the listing in h-a-x editor as far as what the block is i
 Settings provide the editing form fields the user sees. This is a simplified version of JSON Schema and supports `property`, `attribute`, or `slot` as far as what it is mapped to. `title` and `description` are shown to the user on the form while `inputMethod` is one of the following which builds the input in question:
 
 - **Organization**
-  - **tabs** - visual wrapper which groups sub-forms into defined tabs, hiding non-active tabs
-  - **fieldset** - visual wrapper which groups sub-forms within a border
-  - **array** - visual wrapper which groups sub-forms as an array of objects (Users can dynamically expand this array with an "add item" button)
-  - **collapse** - visual wrapper which groups sub-forms under a collapsible tag
+  - **tabs** - visual wrapper which groups sub-fields into defined tabs, hiding non-active tabs
+  - **fieldset** - visual wrapper which groups sub-fields within a border
+  - **array** - visual wrapper which groups sub-fields as an array of objects (Users can dynamically expand this array with an "add item" button)
+  - **collapse** - visual wrapper which groups sub-fields under a collapsible tag
 - **Controls**
   - **textfield** -  text input
   - **textarea** - resizeable multi-line text input
@@ -115,6 +115,31 @@ Settings has 3 possible properties which have array of fields to generate. `conf
   ],
   "advanced": [],
   "developer": [],
+}
+```
+
+**Organization** settings are designed for a more complex use case, purposefully grouping fields together. You will need to assign child items, or sub-fields, under the `properties` tag.
+```json
+"settings": {
+  "configure": [
+    {
+      "property": "skills",
+      "title": "Associated Skills",
+      "description": "The skills related to the element",
+      "inputMethod": "array",
+      "itemLabel": "name",
+      "hideReorder": true,
+      "expanded": true,
+      "hideDuplicate": true,
+      "properties": [
+        {
+          "property": "name",
+          "title": "Skill",
+          "inputMethod": "textfield",
+        }
+      ]
+    }
+  ]
 }
 ```
 
